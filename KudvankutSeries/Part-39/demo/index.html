@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+	references:
+	https://www.youtube.com/watch?v=hu-MgxVeosg&index=38&list=PL6n9fhu94yhVDV697uvHpavA3K_eWGQap
+	(part-39) jQuery execute event only once
+-->	
+<html lang="en-us">
+	<head>
+		<title>Part-39</title>
+		<meta charset="utf-8">
+		<!-- jquery 1 supports ie 6,7,8 -->
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+		<!-- <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.js"></script> -->
+		<script type="text/javascript">
+			$(document).ready(function(){
+				/*
+				$('#btn').on('click', function(){
+					alert('Button Clicked!');
+					$(this).off('click');
+				});
+				*/
+				$('input[type="button"]').one({
+					mouseover : function(){
+						$(this).css('background-color', 'yellow');
+					},
+					mouseout : function(){
+						$(this).css('background-color', 'white');
+					},
+					click : function(){
+						alert('Button Clicked!');
+					}
+				});
+			});
+		</script>
+	</head>
+	<body style="font-family: Arial;">
+		<header>
+			<a href="https://www.youtube.com/watch?v=Uiy9keC3MUg&list=PL6n9fhu94yhVDV697uvHpavA3K_eWGQap&index=39">
+				jQuery execute event only once
+			</a>
+			<br/>
+			<a href="https://www.asp.net/ajax/cdn">
+				Microsoft Ajax Content Delivery Network
+			</a>
+		</header>
+		<main>
+			<input type="button" value="Click Me" />
+			<input type="button" value="Click Me" />
+			<input type="button" value="Click Me" />
+		</main>
+		<footer>
+			<!-- insert footer content here -->			
+		</footer>
+	</body>
+</html>
