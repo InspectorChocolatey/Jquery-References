@@ -1,3 +1,6 @@
+# *Microsoft Ajax Content Delivery Network*
+    https://www.asp.net/ajax/cdn
+
 # *jquery href:*
     <!-- jquery 1 supports ie 6,7,8 -->
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
