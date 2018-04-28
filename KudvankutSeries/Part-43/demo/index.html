@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--
+	references:
+	https://www.youtube.com/watch?v=pkIZqzSVr74&index=40&list=PL6n9fhu94yhVDV697uvHpavA3K_eWGQap
+	(part-40) jQuery how to check if event is already bound
+-->	
+<html lang="en-us">
+	<head>
+		<title>Part-40</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- jquery 1 supports ie 6,7,8 -->
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+		<!-- <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.js"></script> -->
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('body').css('background-color', '#555');
+				$('#divContainer img').on({
+					mouseover: function(){
+						$(this).css({
+							'cursor':'pointer',
+							'border-Color':'red'
+						});
+					},
+					mouseout: function(){
+						$(this).css({
+							'cursor':'default',
+							'border':'grey'
+						});
+					},
+					click: function(){
+						var imgUrl = $(this).attr('src');
+						$('#mainImage').fadeOut(300, function(){
+							$(this).attr('src', imgUrl);
+						}).fadeIn(300);
+						//$('#mainImage').attr('src', imgUrl);
+					}
+				});
+			});
+		</script>
+		<style type="text/css">
+			.imgStyle {
+				height: 100px;
+				width: 100px;
+				border: 3px solid grey;
+			}
+		</style>
+	</head>
+	<body style="font-family: Arial;">
+		<header>
+			<!-- insert header content here --> 
+		</header>
+		<main style="main: auto;">
+
+			<img id="mainImage" height="500" width="540" style="border: 3px solid grey" src="img/blacklotus.jpg"/>
+			<br/>
+			<div id="divContainer">
+				<img src="img/moxsapphire.jpg" class="imgStyle" alt="moxsapphire.jpg"/>
+				<img src="img/moxjet.jpg" class="imgStyle" alt="moxjet.jpg"/>
+				<img src="img/moxruby.jpg" class="imgStyle" alt="moxruby.jpg"/>
+				<img src="img/moxpearl.jpg" class="imgStyle" alt="moxpearl.jpg"/>
+				<img src="img/moxemerald.jpg" class="imgStyle" alt="moxemerald.jpg"/>
+				<br/>
+				<img src="img/blacklotus.jpg" class="imgStyle" alt="blacklotus.jpg"/>
+				<img src="img/ancestralrecall.jpg" class="imgStyle" alt="ancestralrecall.jpg"/>
+				<img src="img/timewalk.jpg" class="imgStyle" alt="timewalk.jpg"/>
+				<img src="img/timetwister.jpg" class="imgStyle" alt="timetwister.jpg"/>
+				<img src="img/timevault.jpg" class="imgStyle" alt="timevault.jpg"/>
+			</div>
+		</main>
+		<footer>
+			<!-- insert footer content here -->			
+		</footer>
+	</body>
+</html>
