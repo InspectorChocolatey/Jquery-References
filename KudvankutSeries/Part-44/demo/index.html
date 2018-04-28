@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--
+	references:
+	https://www.youtube.com/watch?v=oBcKmmjpwls&list=PL6n9fhu94yhVDV697uvHpavA3K_eWGQap&index=44
+	(part-44) Optimise jQuery image gallery
+
+	You can do all sorts of neat things with jquery:
+
+		get the values that have been input/selected by the user,
+		easily set css,
+		create click events,
+		animations
+-->	
+<html lang="en-us">
+	<head>
+		<title>Part-44</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- jquery 1 supports ie 6,7,8 -->
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('body').css('background-color', '#f2f2f2');
+				var mainImgElement = $('#mainImage');
+				var height = parseInt(mainImgElement.attr('height'));
+				var width = parseInt(mainImgElement.attr('width'));
+				$('#btnEnlarge').click(function(){
+					height += 100;
+					width += 100;
+					mainImgElement.animate({
+						'height': height,
+						'width' : width
+					});
+				});
+				$('#btnShrink').click(function(){
+					height -= 100;
+					width -= 100;
+					mainImgElement.animate({
+						'height': height,
+						'width' : width
+					});
+				});
+				$('#divContainer').on({
+					mouseover: function(){
+						$(this).css({
+							'cursor':'pointer',
+							'border-Color':'red'
+						});
+					},
+					mouseout: function(){
+						$(this).css({
+							'cursor':'default',
+							'border':'grey'
+						});
+					},
+					click: function(){
+						var imgUrl = $(this).attr('src');
+						var effect = $('#selectImgEffect').val();
+						var duration = $('#selectImgDuration').val() * 1000;
+						var mainImg = $('#mainImage');
+						if (effect == 'Fade') {
+							mainImg.fadeOut(duration, function(){
+								$(this).attr('src', imgUrl);
+							}).fadeIn(duration);
+						} else {
+							mainImg.slideUp(duration, function(){
+								$(this).attr('src', imgUrl);
+							}).slideDown(duration);
+						}
+					}
+				}, 'img');
+			});
+		</script>
+		<style type="text/css">
+			.imgStyle {
+				height: 100px;
+				width: 100px;
+				border: 3px solid grey;
+			}
+		</style>
+	</head>
+	<body style="font-family: Arial;">
+		<header>
+			Select effect:
+			<select id="selectImgEffect">
+				<option value="Slide">Slide</option>
+				<option value="Fade">Fade</option>
+			</select>
+			Time in seconds:
+			<select id="selectImgDuration">
+				<option value="0.5">0.5</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+			<input type="button" value="Enlarge" id="btnEnlarge"/>
+			<input type="button" value="Shrink" id="btnShrink"/>
+			<br/><br/>
+			<hr/>
+		</header>
+		<main>
+			<img id="mainImage" height="500" width="540" style="border: 3px solid grey" src="img/blacklotus.jpg"/>
+			<br/>
+			<div id="divContainer">
+				<img src="img/moxsapphire.jpg" class="imgStyle" alt="moxsapphire.jpg"/>
+				<img src="img/moxjet.jpg" class="imgStyle" alt="moxjet.jpg"/>
+				<img src="img/moxruby.jpg" class="imgStyle" alt="moxruby.jpg"/>
+				<img src="img/moxpearl.jpg" class="imgStyle" alt="moxpearl.jpg"/>
+				<img src="img/moxemerald.jpg" class="imgStyle" alt="moxemerald.jpg"/>
+				<br/>
+				<img src="img/blacklotus.jpg" class="imgStyle" alt="blacklotus.jpg"/>
+				<img src="img/ancestralrecall.jpg" class="imgStyle" alt="ancestralrecall.jpg"/>
+				<img src="img/timewalk.jpg" class="imgStyle" alt="timewalk.jpg"/>
+				<img src="img/timetwister.jpg" class="imgStyle" alt="timetwister.jpg"/>
+				<img src="img/timevault.jpg" class="imgStyle" alt="timevault.jpg"/>
+			</div>
+		</main>
+		<footer>
+			<!-- insert footer content here -->			
+		</footer>
+	</body>
+</html>
