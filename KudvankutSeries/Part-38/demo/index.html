@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--
+	references:
+	https://www.youtube.com/watch?v=hu-MgxVeosg&index=38&list=PL6n9fhu94yhVDV697uvHpavA3K_eWGQap
+	(part-38) jQuery live function
+-->	
+<html lang="en-us">
+	<head>
+		<title>Part-38</title>
+		<meta charset="utf-8">
+		<!-- jquery 1 supports ie 6,7,8 -->
+		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+
+				$('li').live('click', function(){
+					$(this).fadeOut(500);
+				});
+
+
+				$('#btnAdd').on('click', function(){
+					$('ul').append('<li>New List Item</li>');
+				});
+
+				$('#btnUndelegate').on('click', function(){
+					//$('ul').off('click', 'li');
+					$('li').die('click');
+				});
+
+			});
+		</script>
+	</head>
+	<body style="font-family: Arial;">
+		<header>
+			<a href="https://www.youtube.com/watch?v=hu-MgxVeosg&index=38&list=PL6n9fhu94yhVDV697uvHpavA3K_eWGQap">
+				jQuery live function
+			</a>
+			<br/>
+			<a href="https://www.asp.net/ajax/cdn">
+				Microsoft Ajax Content Delivery Network
+			</a>
+		</header>
+		<main>
+			<p>
+				*note: If you are using jQuery 1.7 or higher, you should use the
+					.on(); function rather than .live(); .bind(); or .delegate();
+			</p>
+			<br/>
+			<input id="btnAdd" type="button" value="Add a new list item" />
+			<input id="btnUndelegate" type="button" value="Stop event delegation" />
+			<ul>
+				<li>List Item</li>
+				<li>List Item</li>
+			</ul>
+		</main>
+		<footer>
+			<!-- insert footer content here -->			
+		</footer>
+	</body>
+</html>

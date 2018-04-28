@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--
+	references:
+	https://www.youtube.com/watch?v=Wxnd21_f_pc&index=36&list=PL6n9fhu94yhVDV697uvHpavA3K_eWGQap
+	(part-36) jQuery add event handler to dynamically created element
+-->	
+<html>
+	<head>
+		<title></title>
+		<!-- jquery 1 supports ie 6,7,8 -->
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+
+				$('ul').on('click', 'li', function(){
+					$(this).fadeOut(500);
+				});
+
+
+				$('#btnAdd').on('click', function(){
+					$('ul').append('<li>New List Item</li>');
+				});
+
+			});
+		</script>
+	</head>
+	<body style="font-family: Arial;">
+		<input id="btnAdd" type="button" value="Add a new list item" />
+		<ul>
+			<li>List Item</li>
+			<li>List Item</li>
+		</ul>
+	</body>
+</html>
