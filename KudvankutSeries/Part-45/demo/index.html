@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+	references:
+	https://www.youtube.com/watch?v=iCBBLA3R-60&index=45&list=PL6n9fhu94yhVDV697uvHpavA3K_eWGQap
+	(part-45) jQuery image slideshow with thumbnails
+
+	You can do all sorts of neat things with jquery:
+
+		get the values that have been input/selected by the user,
+		easily set css,
+		create click events,
+		animations
+-->	
+<html lang="en-us">
+	<head>
+		<title>Part-45</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- jquery 1 supports ie 6,7,8 -->
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('body').css('background-color', '#f2f2f2');
+				var imageURLs = new Array();
+
+				var intervalId;
+				var btnStart = $('#btnStartSlideShow');
+				var btnStop = $('#btnStopSlideShow');
+
+				$('#divContainer img').each(function(){
+					imageURLs.push($(this).attr('src'));
+				});
+
+			// for debugging //
+				console.log("number of images: " + imageURLs.length);
+			// for debugging //
+
+				testFunctionScope();
+
+				function setImage(){
+					var mainImageElement = $('#mainImage');
+					var currentImageUrl = mainImageElement.attr('src');
+
+			// for debugging //
+					console.log("current image url: " + currentImageUrl);
+			// for debugging //
+					
+					var currentImageIndex = $.inArray(currentImageUrl, imageURLs);
+
+			// for debugging //
+					console.log("current image index: " + currentImageIndex);
+			// for debugging //
+
+					if (currentImageIndex = (imageURLs.length - 1)) {
+						currentImageIndex = -1;
+					}
+					mainImageElement.attr('src', imageURLs[currentImageIndex + 1]);
+				}
+
+				btnStart.click(function(){
+					intervalId = setInterval(setImage(), 500); // make the setImage() function fire every 500 milliseconds...
+					$(this).attr('disabled', 'disabled');
+					btnStop.removeAttr('disabled');
+				});
+
+				btnStop.click(function(){
+					clearInterval(intervalId);
+					$(this).attr('disabled', 'disabled');
+					btnStart.removeAttr('disabled');
+				}).attr('disabled', 'disabled');
+			});
+
+			function testFunctionScope(){
+				alert('The function was triggered');
+			}
+		</script>
+		<style type="text/css">
+			.imgStyle {
+				height: 100px;
+				width: 100px;
+				border: 3px solid grey;
+			}
+		</style>
+	</head>
+	<body style="font-family: Arial;">
+		<header>
+			<input type="button" id="btnStartSlideShow" value="Start Slideshow"/>
+			<input type="button" id="btnStopSlideShow" value="Stop Slideshow" />
+		</header>
+		<main>
+			<img id="mainImage" height="500" width="540" style="border: 3px solid grey" src="img/blacklotus.jpg"/>
+			<br/>
+			<div id="divContainer">
+				<img src="img/moxsapphire.jpg" class="imgStyle" alt="moxsapphire.jpg"/>
+				<img src="img/moxjet.jpg" class="imgStyle" alt="moxjet.jpg"/>
+				<img src="img/moxruby.jpg" class="imgStyle" alt="moxruby.jpg"/>
+				<img src="img/moxpearl.jpg" class="imgStyle" alt="moxpearl.jpg"/>
+				<img src="img/moxemerald.jpg" class="imgStyle" alt="moxemerald.jpg"/>
+				<br/>
+				<img src="img/blacklotus.jpg" class="imgStyle" alt="blacklotus.jpg"/>
+				<img src="img/ancestralrecall.jpg" class="imgStyle" alt="ancestralrecall.jpg"/>
+				<img src="img/timewalk.jpg" class="imgStyle" alt="timewalk.jpg"/>
+				<img src="img/timetwister.jpg" class="imgStyle" alt="timetwister.jpg"/>
+				<img src="img/timevault.jpg" class="imgStyle" alt="timevault.jpg"/>
+			</div>
+		</main>
+		<footer>
+			<!-- insert footer content here -->			
+		</footer>
+	</body>
+</html>
